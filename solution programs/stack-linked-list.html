@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script src="linked-list.js"></script>
+<script>
+//Similar for queue
+function Stack() {
+	this.list = new LinkedList();
+}
+
+Stack.prototype.push = function(item){
+	this.list.AddFirst(item);
+}
+
+Stack.prototype.pop = function(){
+	if(this.list.count){
+		var value = this.list.head.value;
+		this.list.RemoveFirst();
+		return value;
+	}
+	return "The Stack is empty";
+}
+
+Stack.prototype.getTop = function(){
+	if(this.list.count)
+		return this.list.head.value;
+	return "The Stack is empty";
+}
+
+Stack.prototype.getCount = function(){
+	return this.list.count;
+}
+
+Stack.prototype.clear = function(){
+	this.list.clear();
+}
+</script>
+</body>
+</html>

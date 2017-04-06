@@ -1,0 +1,59 @@
+<html>
+<head>
+<title></title>
+
+<body>
+<script src="linked-list.js"></script>
+<script>
+
+function Queue() {
+	this.list = new LinkedList();
+}
+
+Queue.prototype.Enqueue = function(n){
+	//Addlast operation
+	this.list.AddLast(n);
+}
+
+Queue.prototype.Dequeue = function(n){
+	//Remove first operation
+	if(this.list.count){
+		this.list.RemoveFirst(n);
+	}else{
+		console.log("list is empty");
+	}
+}
+
+Queue.prototype.Peek = function(){
+	if(this.list.count){
+		return console.log(this.list.head);
+	}else{
+		console.log("the list is empty");
+	}
+}
+
+Queue.prototype.Enumerate = function(){
+	var current = this.list.head;
+	while(current){
+		console.log(current.value);
+		current = current.next;
+	}
+}
+
+Queue.prototype.Clear = function(){
+	this.list.head = null;
+	this.list.tail = null;
+	this.list.count = null;
+}
+
+var q = new Queue();
+q.Enqueue(1);
+q.Enqueue(3);
+q.Dequeue();
+q.Peek();
+q.Enumerate();
+
+</script>
+</body>
+</head>
+</html>

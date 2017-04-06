@@ -1,0 +1,69 @@
+<html>
+<head>
+<title></title>
+
+<body>
+<script src="linked-list.js"></script>
+<script>
+	
+function Stack() {
+	this.list = new LinkedList();
+}
+
+Stack.prototype.Push = function(n){
+	this.list.AddFirst(n);
+}
+
+Stack.prototype.Pop = function(){
+	if(this.list.count){
+		var value = this.list.head.value;
+		this.list.RemoveFirst();
+		return value;
+	}
+	return "The Stack is empty";
+}
+
+Stack.prototype.Peek = function(n){
+	if(this.list.head == 0){
+		return "the Stack is empty";
+	}else{
+		return this.list.head.value;
+	}
+}
+Stack.prototype.Peek = function(){
+	if(this.list.count)
+		return this.list.head.value;
+	return console.log("The Stack is empty");
+}
+
+Stack.prototype.Enumerate = function(){
+    var current = this.list.head;
+    while(current){
+        console.log(current.value);
+        current = current.next;
+    }
+}
+
+Stack.prototype.Count = function(){
+	return this.list.count;
+	console.log(this.list.count);
+}
+
+Stack.prototype.Clear = function(){
+	this.list.clear();
+}
+var dll = new Stack();
+
+
+dll.Push(3);
+dll.Push(5);
+dll.Pop();
+
+dll.Peek();
+dll.Count();
+
+dll.Enumerate();
+</script>
+</body>
+</head>
+</html>

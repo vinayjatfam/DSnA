@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>
+</title>
+
+<body>
+<script src="doubly-linked-list.js"></script>
+<script>
+	//add a node to the front of the list: so update the head pointer to the new node and the tail pointer shudnt be updated because its already pointing to the tail node
+	var n3 = new DllNode(7);
+	var n2 = new DllNode(5,n1,n3);
+	var n1 = new DllNode(3,null,n2);
+
+	var dll = new Dll();
+
+	for(var i=0; i<10; i++){
+		dll.AddFirst(i*3);
+	}
+	dll.Clear();
+
+	dll.Enumerate();
+	
+
+
+
+	
+</script>
+<body>
+<html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script src="linked-list.js"></script>
+<script>
+
+var n2 = new LinkedListNode(5);
+var n1 = new LinkedListNode(3, n2);
+
+var ll = new LinkedList();
+for(var i = 0; i < 10; i++){
+	ll.AddFirst(i*3);
+}
+ll.enumerate();
+
+var ll2 = new LinkedList(n1, n2);
+for(var i = 0; i < 10; i++){
+	ll2.AddLast(i*3);
+}
+for(var i = 0; i < 5; i++){
+	ll2.RemoveFirst();
+}
+ll2.Remove(18);
+ll2.clear();
+ll2.enumerate();
+</script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<html>
+<head>
+<title>
+</title>
+
+<body>
+
+<script>
+	//add a node to the front of the list: so update the head pointer to the new node and the tail pointer shudnt be updated because its already pointing to the tail node
+
+function BinaryTreeNode(v,l,r){
+	this.value = v;
+	this.left = l ? l : null;
+	this.right = r ? r : null;
+
+}
+
+BinaryTreeNode.prototype.compareTo = function(item){
+	if(this.head > item){
+		return 1;
+	} else if (this.head < item){
+		return -1;
+	} else return 0;
+}
+
+BinaryTreeNode.prototype.Parent = function(item){
+	var parent =  new BinaryTreeNode(item);
+	return FindWithParent(value, outParent);
+}
+
+BinaryTreeNode.prototype.FindWithParent = function(val, parent){
+	var current = new BinaryTreeNode();
+	current = this.head;
+	parent = null;
+	while(!current){
+
+		var result = current.compareTo(value);
+		if(result > 0){
+			parent = current;
+			current = current.left;	
+		} else if(result < 0){
+			parent = current;
+			current = current.right;
+		}else{
+			break;
+		}
+	}
+	return current;
+}
+
+
+function BinaryTree(){
+	this.head = null;
+	this.count = 0;
+}
+
+BinaryTree.prototype.Add = function(val){
+	var newNode = new BinaryTreeNode(val);
+	if(!this.head){
+		this.head = newNode;
+	}else {
+		AddTo(this.head, val)
+	}
+	this.count++;
+
+}
+
+BinaryTree.prototype.AddTo = function(h, val){
+	//value is less than the current node value
+	if(val < h.value){
+		if(h.left == null){
+			h.left = new BinaryTreeNode(val);
+		} else{
+			AddTo(h.left, value);
+		}
+	} else {
+	//value is equal to or greater than the current node value
+		if(h.right == null){
+			h.right = new BinaryTreeNode(val);
+		} else {
+			AddTo(h.right, val);
+		}
+	}
+}
+
+BinaryTree.prototype.remove = function(val) {
+	var obj = this.find(val);
+	var current = obj.current;
+	var parent = obj.parent;
+
+	if(current){
+		this.count--;
+
+		//Case 1: If current has no right child, then current's left replaces current
+		if(!current.right){
+			if(!parent){
+				this.head = current.left;
+			}
+			else{
+				if(current==parent.right){
+					if(current.left){
+						parent.right = current.left;
+					}
+					else{
+						parent.right = null;
+					}
+				}
+				else{
+					if(current.left){
+						parent.left = current.left;
+					}
+					else{
+						parent.left = null;
+					}
+				}			
+			}
+		}
+
+		//Case 2: If current's right child has no left child, then current's right child replaces current
+		else if(!current.right.left){
+			if(!parent){
+				this.head = current.right;
+			}
+			else{
+				if(current==parent.right){
+					if(current.right){
+						parent.right = current.right;
+					}
+					else{
+						parent.right = null;
+					}
+				}
+				else{
+					if(current.right){
+						parent.left = current.right;
+					}
+					else{
+						parent.left = null;
+					}
+				}			
+			}
+		}
+
+		//case 3: Refer to slides
+	}
+};
+
+BinaryTree.prototype.find = function(val){
+	var current = this.head;
+	var parent = null;
+	while(current){
+		if(current.value==val){
+			break;
+		}
+		else if(val>current.value){
+			parent = current;
+			current = current.right;
+		}
+		else{
+			parent = current;	
+			current = current.left;
+		}
+	}
+	return {
+		current: current,
+		parent: parent
+	};
+}
+
+BinaryTree.prototype.enumerate = function(h) {
+	if(!h){
+		return null;
+	}
+	console.log(h.value);
+	this.enumerate(h.left);
+	this.enumerate(h.right);
+};
+</script>
+<body>
+<html>

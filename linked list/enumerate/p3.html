@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>
+</title>
+
+<body>
+<script src="linked-list.js"></script>
+<script>
+	//add a node to the front of the list: so update the head pointer to the new node and the tail pointer shudnt be updated because its already pointing to the tail node
+	var n3 = new LinkedListNode(7);
+	var n2 = new LinkedListNode(5,n3);
+	var n1 = new LinkedListNode(3,n2);
+
+
+	
+	var ll = new LinkedList();
+for(var i = 0; i < 10; i++){
+	ll.AddFirst(i*3);
+}
+ll.AddFirst(30);
+ll.RemoveFirst(30);
+ll.RemoveLast(0);
+ll.AddLast(0);
+ll.enumerate();
+
+	
+</script>
+<body>
+<html>

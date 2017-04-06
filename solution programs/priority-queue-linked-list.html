@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script src="linked-list.js"></script>
+<script>
+function Priority_Queue() {
+	this.list = new LinkedList();
+}
+
+Priority_Queue.prototype.enqueue = function(item){
+	if(!this.list.count){
+		this.list.AddLast(item);
+	}
+	else{
+		var current = this.list.head;
+		var previous = null;
+		while(current && current.value>item){
+			previous = current;
+			current = current.next;
+		}
+		var newNode = new LinkedListNode(item);
+		previous.next = newNode;
+		newNode.next = current;
+		this.list.count++;
+	}
+}
+
+Priority_Queue.prototype.dequeue = function(){
+	if(this.list.count){
+		var value = this.list.head.value;
+		this.list.RemoveFirst();
+		return value;
+	}
+	return "Queue is empty";
+}
+</script>
+</body>
+</html>

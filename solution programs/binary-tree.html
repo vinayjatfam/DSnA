@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script>
+function BinaryTreeNode(v,l,r) {
+	this.value = v;
+	this.left = l ? l : null;
+	this.right = r ? r : null;
+}
+
+BinaryTreeNode.prototype.compareTo = function(item){
+	if(this.value > item)
+		return 1;
+	else if(this.value < item)
+		return -1;
+	else return 0;
+}
+
+function BinaryTree(){
+	this.head = null;
+	this.count = 0;
+}
+
+BinaryTree.prototype.add = function(val){
+	if(!this.head){
+		this.head = new BinaryTreeNode(val);
+	}
+	else{
+		this.recursiveAdd(this.head, val);
+	}
+	this.count++;
+}
+
+BinaryTree.prototype.recursiveAdd = function(temp,val){
+	if(val<temp.value){
+		if(temp.left){
+			this.recursiveAdd(temp.left,val);
+		}
+		else{
+			temp.left = new BinaryTreeNode(val);
+		}
+	}
+	else{
+		if(temp.right){
+			this.recursiveAdd(temp.right,val);
+		}
+		else{
+			temp.right = new BinaryTreeNode(val);
+		}
+	}
+}
+
+BinaryTree.prototype.remove = function(val) {
+	var obj = this.find(val);
+	var current = obj.current;
+	var parent = obj.parent;
+
+	if(current){
+		this.count--;
+
+		//Case 1: If current has no right child, then current's left replaces current
+		if(!current.right){
+			if(!parent){
+				this.head = current.left;
+			}
+			else{
+				if(current==parent.right){
+					if(current.left){
+						parent.right = current.left;
+					}
+					else{
+						parent.right = null;
+					}
+				}
+				else{
+					if(current.left){
+						parent.left = current.left;
+					}
+					else{
+						parent.left = null;
+					}
+				}			
+			}
+		}
+
+		//Case 2: If current's right child has no left child, then current's right child replaces current
+		else if(!current.right.left){
+			if(!parent){
+				this.head = current.right;
+			}
+			else{
+				if(current==parent.right){
+					if(current.right){
+						parent.right = current.right;
+					}
+					else{
+						parent.right = null;
+					}
+				}
+				else{
+					if(current.right){
+						parent.left = current.right;
+					}
+					else{
+						parent.left = null;
+					}
+				}			
+			}
+		}
+
+		//case 3: Refer to slides
+	}
+};
+
+BinaryTree.prototype.find = function(val){
+	var current = this.head;
+	var parent = null;
+	while(current){
+		if(current.value==val){
+			break;
+		}
+		else if(val>current.value){
+			parent = current;
+			current = current.right;
+		}
+		else{
+			parent = current;	
+			current = current.left;
+		}
+	}
+	return {
+		current: current,
+		parent: parent
+	};
+}
+
+BinaryTree.prototype.enumerate = function(h) {
+	if(!h){
+		return null;
+	}
+	console.log(h.value);
+	this.enumerate(h.left);
+	this.enumerate(h.right);
+};
+</script>
+</body>
+</html>

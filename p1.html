@@ -1,0 +1,17 @@
+<script>
+function Node(val, next) {
+	this.val = val;
+	this.next = next;
+	console.log(val);
+	console.log(next);
+};
+
+
+var n3 = new Node(7);
+var n2 = new Node(5, n3);
+var n1 = new Node(3, n2);
+/*created 3 independent nodes using the function Node which takes in the value as 3, 5 and 7 respectively and the next pointer is undefined for the node n3
+Note: declaration of var n1 = new node(3,n2); var n2= new node(5,n3); will give undefined because n1 will not have access to n2 and n2 to n3 hence declare n3 first
+*/
+
+</script>

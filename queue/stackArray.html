@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>
+</title>
+
+<body>
+<script>
+
+function Stack(h){
+	this.head = h;
+	var items = [];
+	var size = 0;
+}
+
+Stack.prototype.Push = function (n){
+	this.items = [n];
+	console.log(this.items[n]);
+	this.size++;
+}
+
+Stack.prototype.Display = function(){
+	var news = this.items;
+	for(var i =0; i < news.length(); i++){
+		console.log(this.items[i]);
+	}
+}
+
+var s = new Stack();
+
+s.Push(1);
+s.Display();
+
+
+
+
+//created 2 independent nodes using the function Node which takes in the value as 3 and 5 respectively and the next pointer is undefined
+
+</script>
+</body>
+
+</head>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script>
+
+function Node(v,n){
+	this.value = v;
+	this.next = n ? n:null;
+}
+
+var n1 = new Node(3);
+var n2 = new Node(5);
+var n3 = new Node(7);
+
+n1.next = n2;
+n2.next = n3;
+
+printNodeList(n1);
+
+function printNodeList(n){
+	while(n){
+		console.log(n.value);
+		n = n.next;
+	}
+}
+
+</script>
+</body>
+</html>

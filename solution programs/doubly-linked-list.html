@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script>
+//1. Constructor functions to create DoublyLinkedListNode and DoublyLinkedList
+//2. Functions - 
+//  a. AddFirst()
+//  b. AddLast()
+//  c. RemoveFirst()
+//  d. RemoveLast()
+//  e. Remove()
+//  f. find()
+//  g. enumerate()
+//  h. clear()
+
+function DllNode(v,p,n){
+	this.value = v;
+	this.previous = p ? p : null;
+	this.next = n ? n : null;
+}
+
+function Dll(h,t,c){
+	this.head = h?h:null;
+	this.tail = t?t:null;
+	this.count = 0;
+	if(this.head){
+		var current = this.head;
+		while(current){
+			this.count++;
+			current=current.next;
+		}
+	}
+}
+
+Dll.prototype.AddFirst = function(v) {
+	var newNode = new DllNode(v);
+	if(!this.head){
+		this.head = newNode;
+		this.tail = newNode;
+	}
+	else{
+		newNode.next = this.head;
+		this.head.previous = newNode;
+		this.head = newNode; 
+	}
+	this.count++;
+};
+
+Dll.prototype.AddLast = function(v) {
+	var newNode = new DllNode(v);
+	if(!this.head){
+		this.head = newNode;
+		this.tail = newNode;
+	}
+	else{
+		newNode.previous = this.tail;
+		this.tail.next = newNode;
+		this.tail = newNode; 
+	}
+	this.count++;
+};
+
+Dll.prototype.RemoveFirst = function() {
+	if(this.head){
+
+		if(this.count==1){
+			this.head = null;
+			this.tail = null;
+		}
+		else{
+			this.head = this.head.next;
+			this.head.previous = null;
+		}
+		this.count--;
+	}
+};
+
+Dll.prototype.RemoveFirst = function() {
+	if(this.head){
+		if(this.count==1){
+			this.head = null;
+			this.tail = null;
+		}
+		else{
+			this.head = this.head.next;
+			this.head.previous = null;
+		}
+		this.count--;
+	}
+};
+
+Dll.prototype.RemoveLast = function() {
+	if(this.head){
+		if(this.count==1){
+			this.head = null;
+			this.tail = null;
+		}
+		else{
+			this.tail = this.tail.previous;
+			this.tail.next = null;
+		}
+		this.count--;
+	}
+};
+
+Dll.prototype.Remove = function(v){
+	if(this.count){
+		var current = this.head;
+		while(current){
+			if(current.value==v){
+				if(current==this.head){
+					this.RemoveFirst();
+					break;
+				}
+				else if(current==this.tail){
+					this.RemoveLast();
+					break;
+				}
+				else{
+					var temp = current.next;
+					current.next = null;
+					current.previous.next = temp;
+					this.count--;
+					break;
+				}
+			}
+			current = current.next;
+		}
+	}
+}
+
+Dll.prototype.find = function(v){
+	var current = this.head;
+	while(current){
+		if(current.value==v)
+			return true;
+		current = current.next;
+	}
+	return false;
+}
+
+Dll.prototype.clear = function(){
+	this.head = null;
+	this.tail = null;
+	this.count = 0;
+}
+
+Dll.prototype.enumerate = function(){
+	var current = this.head;
+	while(current){
+		console.log(current.value);
+		current = current.next;
+	}
+}
+
+</script>
+</body>
+</html>
